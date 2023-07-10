@@ -6,8 +6,7 @@ const app = express();
 const port = 3000;
 
 app.get("/", (req, res) => {
-  console.log("lol");
-  res.send("Hello World!");
+  res.send("This api contains only simple websocket implementation");
 });
 
 const server = app.listen(port, () => {
@@ -16,23 +15,20 @@ const server = app.listen(port, () => {
 
 const wss = new WebSocket.Server({ server });
 
-wss.on("connection", async (ws) => {
+wss.on("connection", async (ws, req) => {
   try {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/17FXJ_St91eMQ7Fc3zO4YMMhfzixG5g2wq0a3Mk77XsE/values/Sheet2?key=${process.env.API_KEY}`;
-    console.log(url)
-    
+    const [sheetId, title] = req.url.split("/").filter((data) => data);
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${title}?key=${process.env.API_KEY}`;
+
     ws.on("message", (message) => {
-      console.log("Received message:", message);
-      request(url,function (error, response, body) {
+      request(url, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-          ws.send(body) // Print the google web page.
+          ws.send(body);
         }
-      })
+      });
     });
 
-    ws.on("close", () => {
-      console.log("WebSocket connection closed");
-    });
+    ws.on("close", () => {});
   } catch (error) {
     console.error("Error:", error);
   }
