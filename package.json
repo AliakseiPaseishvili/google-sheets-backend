@@ -1,0 +1,22 @@
+{
+  "name": "google-sheets-backend",
+  "version": "1.0.0",
+  "description": "Simple backend with integration of google-sheets",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "y"
+  },
+  "keywords": [
+    "google-sheets-backend"
+  ],
+  "author": "Aliaksei Paseishvili",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.13.0"
+  }
+}
