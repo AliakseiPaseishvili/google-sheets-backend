@@ -4,6 +4,8 @@ This is simple backend that has websocket for client, where we send the data fro
 
 This repository shows simple implementation of websocket.
 
+This repository is additional repository for this one: https://github.com/AliakseiPaseishvili/google-sheets-test-task-websocket.
+
 # Installation and start
 
 Before installation we need to create google api key.
